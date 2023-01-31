@@ -1,8 +1,11 @@
 activate()
+
 $("#addBtn").click(function () {
 
     let text = $(".test");
     let note = localStorage.getItem('note');
+    let title = $(".titl");
+
 
     if (note == null) {
         noteobj = []
@@ -10,9 +13,9 @@ $("#addBtn").click(function () {
         noteobj = JSON.parse(note);
     }
 
-    noteobj.unshift(text.val());
+    noteobj.unshift([title.val(), text.val()]);
     localStorage.setItem('note', JSON.stringify(noteobj));
-
+    title.val("");
     text.val("");
 
     activate()
@@ -32,8 +35,8 @@ function activate() {
 
         htmltext += `<div class="card my-2 mx-2"  style="width: 18rem;">
         <div class="card-body">
-            <h5 class="card-title">Note ${index + 1}</h5>
-            <p class="card-text" id="notecard">${element}</p>
+            <h5 class="card-title">${element[0]}</h5>
+            <p class="card-text" id="notecard">${element[1]}</p>
             <button type="button" id="${index}" onClick='deletenote(this.id)' class="btn btn-outline-danger btn-sm">Delete note</button>
         </div>
     </div>`
@@ -81,6 +84,7 @@ inputSearch.addEventListener('input', function () {
             element.style.display = 'block';
         } else {
             element.style.display = 'none';
+
         }
 
     })
