@@ -3,18 +3,18 @@ activate()
 $("#addBtn").click(function () {
 
     let text = $(".test");
-    let note = localStorage.getItem('note');
+    let noteBook = localStorage.getItem('noteBook');
     let title = $(".titl");
 
 
-    if (note == null) {
+    if (noteBook == null) {
         noteobj = []
     } else {
-        noteobj = JSON.parse(note);
+        noteobj = JSON.parse(noteBook);
     }
 
     noteobj.unshift([title.val(), text.val()]);
-    localStorage.setItem('note', JSON.stringify(noteobj));
+    localStorage.setItem('noteBook', JSON.stringify(noteobj));
     title.val("");
     text.val("");
 
@@ -22,11 +22,11 @@ $("#addBtn").click(function () {
 
 });
 function activate() {
-    let note = localStorage.getItem('note');
-    if (note == null) {
+    let noteBook = localStorage.getItem('noteBook');
+    if (noteBook == null) {
         noteobj = [];
     } else {
-        noteobj = JSON.parse(note);
+        noteobj = JSON.parse(noteBook);
     }
 
     let htmltext = '';
@@ -55,14 +55,14 @@ function activate() {
 
 function deletenote(index) {
 
-    let note = localStorage.getItem('note');
-    if (note == null) {
+    let noteBook = localStorage.getItem('noteBook');
+    if (noteBook == null) {
         noteobj = [];
     } else {
-        noteobj = JSON.parse(note);
+        noteobj = JSON.parse(noteBook);
     }
     noteobj.splice(index, 1);
-    localStorage.setItem('note', JSON.stringify(noteobj));
+    localStorage.setItem('noteBook', JSON.stringify(noteobj));
     activate()
 }
 
